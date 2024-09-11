@@ -1,57 +1,106 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
-  <meta charset = "UTF-8">
-  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rithvik Muthyalapati | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
+      color: #333;
+      background-color: #f4f4f4;
     }
 
     header {
-      background-color: #333;
+      background-color: #222;
       color: #fff;
       padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     nav ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center;
     }
 
     nav ul li {
-      display: inline;
-      margin-right: 20px;
+      margin: 0 15px;
     }
 
     nav ul li a {
       color: #fff;
       text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #f4a261;
+    }
+
+    .hero {
+      background: url('https://via.placeholder.com/1500x400') no-repeat center center/cover;
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2em;
     }
 
     .section {
-      padding: 50px 0;
+      padding: 50px 20px;
+      text-align: center;
     }
 
     .container {
-      width: 80%;
+      max-width: 1200px;
       margin: auto;
     }
 
     h2 {
-      font-size: 2em;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #333;
     }
 
     h3 {
-      font-size: 1.5em;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #f4a261;
+    }
+
+    p {
+      font-size: 1em;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
     }
 
     footer {
-      background-color: #333;
+      background-color: #222;
       color: #fff;
       text-align: center;
       padding: 20px;
@@ -59,42 +108,59 @@
       bottom: 0;
       width: 100%;
     }
+
+    footer p {
+      margin: 0;
+    }
+
+    .project-link {
+      color: #f4a261;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href = "#about">About</a></li>
-        <li><a href = "#education">Education</a></li>
-        <li><a href = "#skills">Skills</a></li>
-        <li><a href = "#projects">Projects</a></li>
-        <li><a href = "#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id = "about" class = "section">
-    <div class = "container">
+  <section class="hero">
+    <h1>Welcome to My Portfolio</h1>
+    <p>Hi, I'm Rithvik Muthyalapati, a Computer Science student with a passion for technology and development.</p>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
       <h2>About Me</h2>
-      <p>Rithvik Muthyalapati is a passionate computer science student with a strong foundation in programming and a keen interest in machine learning and full-stack development.
-      My knowledge is not limited to this 
-      </p>
+      <p>Rithvik Muthyalapati is a passionate computer science student with a strong foundation in programming and a keen interest in machine learning and full-stack development. My knowledge is not limited to this field, and I am constantly exploring new technologies and methodologies.</p>
     </div>
   </section>
 
-  <section id = "education" class = "section">
-    <div class = "container">
+  <section id="education" class="section">
+    <div class="container">
       <h2>Education</h2>
       <ul>
-        <li>B.Tech Computer Science and Engineering - University (PES, Bangalore) - 2022-present</li>
-        <li>High School - High School (Homestead High School, California, USA) - 2018-2022</li>
+        <li>B.Tech Computer Science and Engineering - PES University, Bangalore - 2022-present</li>
+        <li>High School - Homestead High School, California, USA - 2018-2022</li>
       </ul>
     </div>
   </section>
 
-  <section id = "skills" class = "section">
-    <div class = "container">
+  <section id="skills" class="section">
+    <div class="container">
       <h2>Skills</h2>
       <h3>Programming Languages</h3>
       <p>Java (proficient), Python (proficient), Rust (proficient), C (proficient), C++ (intermediate)</p>
@@ -109,18 +175,18 @@
     </div>
   </section>
 
-  <section id = "projects" class = "section">
-    <div class = "container">
+  <section id="projects" class="section">
+    <div class="container">
       <h2>Projects</h2>
-      <h3><a href = "https://github.com/Rithvik50/Calculator" target = "_blank">Calculator</a></h3>
-      <p>Created a GUI calculator interface using Java. Can handle large amounts of operations and properly apply PEMDAS. Utilizes data structures like arrays, stacks, and utilizes operations like queuing and dequeuing to implement PEMDAS</p>
-      <h3><a href = "https://github.com/Rithvik50/BrickDestroyer" target = "_blank">BrickDestroyer</a></h3>
-      <p>Created an Atari Breakout-like game using Java. Incorporates GUI to display a menu, the game controlled by arrow keys, a shop</p>
-      <h3><a href = "https://github.com/Rithvik50/Hangman" target = "_blank">Hangman</a></h3>
-      <p>Created a hangman game using C. It utilizes linked lists to store each character of the correct message and the inputted guesses</p>
-      <h3><a href = "https://github.com/Rithvik50/SevenSegmentDisplay" target = "_blank">Seven Segment Display</a></h3>
-      <p>Using Iverilog, you can simulate a 7-segment display by modeling its behavior through Verilog code and testing it with simulation tools.</p>
-      <h1>FOR OTHER PROJECTS REFER MY GITHUB REPO LINK AT THE BOTTOM OF THE PAGE</h1>
+      <h3><a class="project-link" href="https://github.com/Rithvik50/Calculator" target="_blank">Calculator</a></h3>
+      <p>Created a GUI calculator interface using Java. Handles complex operations and applies PEMDAS. Utilizes data structures like arrays and stacks.</p>
+      <h3><a class="project-link" href="https://github.com/Rithvik50/BrickDestroyer" target="_blank">BrickDestroyer</a></h3>
+      <p>An Atari Breakout-like game using Java, featuring a GUI menu, game controls with arrow keys, and a shop.</p>
+      <h3><a class="project-link" href="https://github.com/Rithvik50/Hangman" target="_blank">Hangman</a></h3>
+      <p>A hangman game using C, utilizing linked lists to store characters and guesses.</p>
+      <h3><a class="project-link" href="https://github.com/Rithvik50/SevenSegmentDisplay" target="_blank">Seven Segment Display</a></h3>
+      <p>Simulates a 7-segment display using Verilog code and simulation tools.</p>
+      <p>For other projects, refer to my <a class="project-link" href="https://github.com/Rithvik50/" target="_blank">GitHub repository</a>.</p>
     </div>
   </section>
 
@@ -129,12 +195,11 @@
       <h2>Contact</h2>
       <p>Feel free to reach out to me via:</p>
       <ul>
-        <li>Phone: <a href = "tel:8951717766" target = "_blank" >8951717766</a></li>
-        <li>Email: <a href = "mailto:rmuthyalapati@gmail.com" target = "_blank">rmuthyalapati@gmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/rithvikmuthyalapati/" target = "_blank" >Rithvik's LinkedIn Profile</a></li>
-        <li>GitHub: <a href = "https://github.com/Rithvik50/" target = "_blank" >GitHub Profile</a></li>
-        <li>Portfolio: <a href = "https://portfolio-delta-ashen-72.vercel.app" target = "_blank">PORTFOLIO</a></li>
-        
+        <li>Phone: <a href="tel:8951717766">8951717766</a></li>
+        <li>Email: <a href="mailto:rmuthyalapati@gmail.com">rmuthyalapati@gmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/rithvikmuthyalapati/">Rithvik's LinkedIn Profile</a></li>
+        <li>GitHub: <a href="https://github.com/Rithvik50/">GitHub Profile</a></li>
+        <li>Portfolio: <a href="https://portfolio-delta-ashen-72.vercel.app">My Portfolio</a></li>
       </ul>
     </div>
   </section>
@@ -142,7 +207,5 @@
   <footer>
     <p>&copy; 2024 Rithvik Muthyalapati - Portfolio</p>
   </footer>
-
-
 </body>
 </html>
