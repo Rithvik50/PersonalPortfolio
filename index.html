@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset = "UTF-8">
-  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rithvik Muthyalapati | Portfolio</title>
-  <link href = "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel = "stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -18,7 +18,11 @@
       background-color: #222;
       color: #fff;
       padding: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
     }
 
     nav ul {
@@ -45,11 +49,12 @@
     }
 
     .hero {
-      /* background: url('https://via.placeholder.com/1500x400') no-repeat center center/cover; */
-      color: #000000;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x400') no-repeat center center/cover;
+      color: #fff;
       padding: 100px 20px;
       text-align: center;
       position: relative;
+      margin-top: 70px; /* Offset header */
     }
 
     .hero h1 {
@@ -60,6 +65,7 @@
 
     .hero p {
       font-size: 1.2em;
+      margin-top: 10px;
     }
 
     .section {
@@ -93,10 +99,30 @@
     ul {
       list-style-type: none;
       padding: 0;
+      text-align: left;
+      margin: auto;
     }
 
     ul li {
       margin-bottom: 10px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-top: 0;
     }
 
     footer {
@@ -122,85 +148,125 @@
     .project-link:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      .hero {
+        padding: 80px 20px;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href = "#about">About</a></li>
-        <li><a href = "#education">Education</a></li>
-        <li><a href = "#skills">Skills</a></li>
-        <li><a href = "#projects">Projects</a></li>
-        <li><a href = "#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class = "hero">
+  <section class="hero">
     <h1>Welcome to My Portfolio</h1>
     <p>Hi, I'm Rithvik Muthyalapati, a Computer Science student with a passion for technology and development.</p>
   </section>
 
-  <section id = "about" class = "section">
-    <div class = "container">
+  <section id="about" class="section">
+    <div class="container">
       <h2>About Me</h2>
-      <p>Rithvik Muthyalapati is a passionate computer science student with a strong foundation in programming and a keen interest in machine learning and full-stack development. My knowledge is not limited to this field, and I am constantly exploring new technologies and methodologies.</p>
+      <div class="card">
+        <p>Rithvik Muthyalapati is a passionate computer science student with a strong foundation in programming and a keen interest in machine learning and full-stack development. My knowledge is not limited to this field, and I am constantly exploring new technologies and methodologies.</p>
+      </div>
     </div>
   </section>
 
-  <section id = "education" class = "section">
-    <div class = "container">
+  <section id="education" class="section">
+    <div class="container">
       <h2>Education</h2>
-      <ul>
-        <li>B.Tech Computer Science and Engineering - PES University, Bangalore - 2022-present</li>
-        <li>High School - Homestead High School, California, USA - 2018-2022</li>
-      </ul>
+      <div class="card">
+        <ul>
+          <li>B.Tech Computer Science and Engineering - PES University, Bangalore - 2022-present</li>
+          <li>High School - Homestead High School, California, USA - 2018-2022</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section id = "skills" class = "section">
-    <div class = "container">
+  <section id="skills" class="section">
+    <div class="container">
       <h2>Skills</h2>
-      <h3>Programming Languages</h3>
-      <p>Java (proficient), Python (proficient), Rust (proficient), C (proficient), C++ (intermediate)</p>
-      <h3>Machine Learning</h3>
-      <p>pandas, numpy, matplotlib, seaborn, and other ML related models (Intermediate)</p>
-      <h3>Cloud/Web</h3>
-      <p>React, MongoDB, SQL</p>
-      <h3>Data Structures & Algorithms</h3>
-      <p>Intermediate</p>
-      <h3>Full Stack Development</h3>
-      <p>Frontend (HTML/CSS/JS), Backend (Node.js, Express.js), Databases (MySQL, MongoDB)</p>
+      <div class="card">
+        <h3>Programming Languages</h3>
+        <p>Java (proficient), Python (proficient), Rust (proficient), C (proficient), C++ (intermediate)</p>
+      </div>
+      <div class="card">
+        <h3>Machine Learning</h3>
+        <p>pandas, numpy, matplotlib, seaborn, and other ML related models (Intermediate)</p>
+      </div>
+      <div class="card">
+        <h3>Cloud/Web</h3>
+        <p>React, MongoDB, SQL</p>
+      </div>
+      <div class="card">
+        <h3>Data Structures & Algorithms</h3>
+        <p>Intermediate</p>
+      </div>
+      <div class="card">
+        <h3>Full Stack Development</h3>
+        <p>Frontend (HTML/CSS/JS), Backend (Node.js, Express.js), Databases (MySQL, MongoDB)</p>
+      </div>
     </div>
   </section>
 
-  <section id = "projects" class = "section">
-    <div class = "container">
+  <section id="projects" class="section">
+    <div class="container">
       <h2>Projects</h2>
-      <h3><a class = "project-link" href = "https://github.com/Rithvik50/Calculator" target = "_blank">Calculator</a></h3>
-      <p>Created a GUI calculator interface using Java. Handles complex operations and applies PEMDAS. Utilizes data structures like arrays and stacks.</p>
-      <h3><a class = "project-link" href = "https://github.com/Rithvik50/BrickDestroyer" target = "_blank">BrickDestroyer</a></h3>
-      <p>An Atari Breakout-like game using Java, featuring a GUI menu, game controls with arrow keys, and a shop.</p>
-      <h3><a class = "project-link" href = "https://github.com/Rithvik50/Hangman" target = "_blank">Hangman</a></h3>
-      <p>A hangman game using C, utilizing linked lists to store characters and guesses.</p>
-      <h3><a class = "project-link" href = "https://github.com/Rithvik50/SevenSegmentDisplay" target = "_blank">Seven Segment Display</a></h3>
-      <p>Simulates a 7-segment display using Verilog code and simulation tools.</p>
-      <p>For other projects, refer to my <a class = "project-link" href = "https://github.com/Rithvik50/" target = "_blank">GitHub repository</a>.</p>
+      <div class="card">
+        <h3><a class="project-link" href="https://github.com/Rithvik50/Calculator" target="_blank">Calculator</a></h3>
+        <p>Created a GUI calculator interface using Java. Handles complex operations and applies PEMDAS. Utilizes data structures like arrays and stacks.</p>
+      </div>
+      <div class="card">
+        <h3><a class="project-link" href="https://github.com/Rithvik50/BrickDestroyer" target="_blank">BrickDestroyer</a></h3>
+        <p>An Atari Breakout-like game using Java, featuring a GUI menu, game controls with arrow keys, and a shop.</p>
+      </div>
+      <div class="card">
+        <h3><a class="project-link" href="https://github.com/Rithvik50/Hangman" target="_blank">Hangman</a></h3>
+        <p>A hangman game using C, utilizing linked lists to store characters and guesses.</p>
+      </div>
+      <div class="card">
+        <h3><a class="project-link" href="https://github.com/Rithvik50/SevenSegmentDisplay" target="_blank">Seven Segment Display</a></h3>
+        <p>Simulates a 7-segment display using Verilog code and simulation tools.</p>
+      </div>
+      <div class="card">
+        <p>For other projects, refer to my <a class="project-link" href="https://github.com/Rithvik50/" target="_blank">GitHub repository</a>.</p>
+      </div>
     </div>
   </section>
 
-  <section id = "contact" class = "section">
-    <div class = "container">
+  <section id="contact" class="section">
+    <div class="container">
       <h2>Contact</h2>
-      <p>Feel free to reach out to me via:</p>
-      <ul>
-        <li>Phone: <a href = "tel:8951717766">8951717766</a></li>
-        <li>Email: <a href = "mailto:rmuthyalapati@gmail.com">rmuthyalapati@gmail.com</a></li>
-        <li>LinkedIn: <a href = "https://www.linkedin.com/in/rithvikmuthyalapati/">Rithvik's LinkedIn Profile</a></li>
-        <li>GitHub: <a href = "https://github.com/Rithvik50/">GitHub Profile</a></li>
-        <li>Portfolio: <a href = "https://portfolio-delta-ashen-72.vercel.app">My Portfolio</a></li>
-      </ul>
+      <div class="card">
+        <p>Feel free to reach out to me via:</p>
+        <ul>
+          <li>Phone: <a href="tel:8951717766">8951717766</a></li>
+          <li>Email: <a href="mailto:rmuthyalapati@gmail.com">rmuthyalapati@gmail.com</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/rithvikmuthyalapati/">Rithvik's LinkedIn Profile</a></li>
+          <li>GitHub: <a href="https://github.com/Rithvik50/">GitHub Profile</a></li>
+          <li>Portfolio: <a href="https://portfolio-delta-ashen-72.vercel.app">My Portfolio</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
