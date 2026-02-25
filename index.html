@@ -1,291 +1,1097 @@
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-  <meta charset = "UTF-8">
-  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-  <title>Rithvik Muthyalapati | Portfolio</title>
-  <link href = "https://fonts.googleapis.com/css2?family = Roboto:wght@400;700&display = swap" rel = "stylesheet">
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      background-color: #f4f4f4;
-    }
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rithvik Muthyalapati | Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0c0c0c;
+        --bg-card: #141414;
+        --bg-card-2: #1a1a1a;
+        --accent: #e8d5a3;
+        --accent-bright: #f5c842;
+        --text: #e8e4dc;
+        --text-muted: #888;
+        --text-dim: #555;
+        --border: #2a2a2a;
+        --border-light: #333;
+        --font-display: "Cormorant Garamond", Georgia, serif;
+        --font-mono: "IBM Plex Mono", monospace;
+      }
 
-    header {
-      background-color: #222;
-      color: #fff;
-      padding: 20px 0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    nav ul li {
-      margin: 0 20px;
-    }
+      body {
+        font-family: var(--font-mono);
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        cursor: none;
+      }
 
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
+      /* ─── Custom Cursor ─── */
+      .cursor {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: var(--accent-bright);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.05s;
+      }
+      .cursor-ring {
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(245, 200, 66, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          transform 0.15s ease,
+          width 0.2s,
+          height 0.2s,
+          border-color 0.2s;
+      }
+      body:has(a:hover) .cursor-ring,
+      body:has(.card:hover) .cursor-ring {
+        width: 48px;
+        height: 48px;
+        border-color: rgba(245, 200, 66, 0.7);
+      }
 
-    nav ul li a:hover {
-      color: #f4a261;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    }
+      /* ─── Noise Overlay ─── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9990;
+        opacity: 0.6;
+      }
 
-    .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-      color: #ffffff;
-      padding: 120px 20px;
-      text-align: center;
-      position: relative;
-      margin-top: 70px; /* Offset header */
-      border-bottom: 5px solid #f4a261;
-    }
+      /* ─── Header ─── */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        background: rgba(12, 12, 12, 0.85);
+        backdrop-filter: blur(12px);
+      }
 
-    .hero h1 {
-      font-size: 3.5em;
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+      .logo {
+        font-family: var(--font-mono);
+        font-size: 0.75em;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        text-transform: uppercase;
+      }
 
-    .hero p {
-      font-size: 1.3em;
-      color: #ffffff;
-      margin-top: 10px;
-      line-height: 1.5;
-    }
+      .logo span {
+        color: var(--text-muted);
+      }
 
-    .section {
-      padding: 60px 20px;
-      text-align: center;
-      background-color: #fff;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2 {
-      font-size: 2.8em;
-      margin-bottom: 30px;
-      color: #333;
-      font-weight: 700;
-    }
-
-    h3 {
-      font-size: 2em;
-      margin-bottom: 15px;
-      color: #f4a261;
-    }
-
-    p {
-      font-size: 1.1em;
-      line-height: 1.8;
-      color: #666;
-      margin: 0;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      margin: auto;
-    }
-
-    ul li {
-      margin-bottom: 15px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      padding: 25px;
-      margin: 15px 0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: left;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .card h3 {
-      margin-top: 0;
-    }
-
-    footer {
-      background-color: #222;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-      border-top: 5px solid #f4a261;
-    }
-
-    footer p {
-      margin: 0;
-      font-size: 0.9em;
-    }
-
-    .project-link {
-      color: #f4a261;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .project-link:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
       nav ul {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+      }
+
+      nav a {
+        font-size: 0.7em;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--text-muted);
+        transition: color 0.3s;
+        position: relative;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--accent-bright);
+        transition: width 0.3s;
+      }
+
+      nav a:hover {
+        color: var(--text);
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* ─── Hero ─── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
         flex-direction: column;
+        justify-content: flex-end;
+        padding: 0 60px 80px;
+        position: relative;
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .hero-bg-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--font-display);
+        font-size: clamp(100px, 18vw, 280px);
+        font-weight: 700;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(232, 213, 163, 0.05);
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        animation: subtleDrift 20s ease-in-out infinite alternate;
+      }
+
+      @keyframes subtleDrift {
+        from {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        to {
+          transform: translate(-50%, -50%) scale(1.03);
+        }
+      }
+
+      .hero-label {
+        font-size: 0.7em;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--accent-bright);
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.2s forwards;
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(52px, 7vw, 100px);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        max-width: 900px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.4s forwards;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .hero-sub {
+        margin-top: 32px;
+        font-size: 0.8em;
+        color: var(--text-muted);
+        max-width: 540px;
+        line-height: 1.8;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.6s forwards;
+      }
+
+      .hero-cta {
+        margin-top: 40px;
+        display: flex;
+        gap: 20px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 0.8s forwards;
+      }
+
+      .btn {
+        font-family: var(--font-mono);
+        font-size: 0.7em;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 14px 32px;
+        border: 1px solid;
+        transition: all 0.3s;
+        cursor: none;
+      }
+
+      .btn-primary {
+        background: var(--accent-bright);
+        color: var(--bg);
+        border-color: var(--accent-bright);
+      }
+
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--accent-bright);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-muted);
+        border-color: var(--border-light);
+      }
+
+      .btn-ghost:hover {
+        color: var(--text);
+        border-color: var(--text);
+      }
+
+      .hero-index {
+        position: absolute;
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        font-size: 0.65em;
+        letter-spacing: 0.3em;
+        color: var(--text-dim);
+        text-transform: uppercase;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ─── Sections ─── */
+      section:not(.hero) {
+        padding: 100px 60px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 24px;
+        margin-bottom: 60px;
+      }
+
+      .section-num {
+        font-size: 0.65em;
+        letter-spacing: 0.3em;
+        color: var(--accent-bright);
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+
+      .section-line {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* ─── About ─── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      .about-text {
+        font-size: 0.9em;
+        line-height: 2;
+        color: var(--text-muted);
+      }
+
+      .about-text p + p {
+        margin-top: 16px;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+
+      .stat-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 32px 24px;
+        transition:
+          border-color 0.3s,
+          background 0.3s;
+      }
+
+      .stat-box:hover {
+        border-color: var(--border-light);
+        background: var(--bg-card-2);
+      }
+
+      .stat-num {
+        font-family: var(--font-display);
+        font-size: 3em;
+        font-weight: 600;
+        color: var(--accent);
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 0.65em;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-top: 8px;
+      }
+
+      /* ─── Education ─── */
+      .edu-item {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 40px;
+        padding: 40px 0;
+        border-top: 1px solid var(--border);
+        align-items: start;
+        transition: all 0.3s;
+      }
+
+      .edu-item:hover .edu-title {
+        color: var(--accent);
+      }
+
+      .edu-year {
+        font-size: 0.7em;
+        letter-spacing: 0.1em;
+        color: var(--text-dim);
+        padding-top: 4px;
+      }
+
+      .edu-title {
+        font-family: var(--font-display);
+        font-size: 1.6em;
+        font-weight: 400;
+        color: var(--text);
+        transition: color 0.3s;
+        margin-bottom: 6px;
+      }
+
+      .edu-place {
+        font-size: 0.75em;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+      }
+
+      /* ─── Skills ─── */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2px;
+      }
+
+      .skill-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 36px 32px;
+        transition:
+          border-color 0.3s,
+          background 0.3s,
+          transform 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--accent-bright);
+        transition: height 0.4s ease;
+      }
+
+      .skill-card:hover {
+        background: var(--bg-card-2);
+        transform: translateY(-2px);
+      }
+      .skill-card:hover::before {
+        height: 100%;
+      }
+
+      .skill-tag {
+        font-size: 0.6em;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--accent-bright);
+        margin-bottom: 16px;
+      }
+
+      .skill-name {
+        font-family: var(--font-display);
+        font-size: 1.5em;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+
+      .skill-detail {
+        font-size: 0.72em;
+        color: var(--text-dim);
+        line-height: 1.7;
+      }
+
+      /* ─── Projects ─── */
+      .projects-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .project-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 40px 48px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: start;
+        transition:
+          border-color 0.3s,
+          background 0.3s;
+        cursor: none;
+      }
+
+      .project-item:hover {
+        background: var(--bg-card-2);
+        border-color: var(--border-light);
+      }
+
+      .project-item:hover .project-arrow {
+        transform: translate(4px, -4px);
+        opacity: 1;
+      }
+      .project-item:hover .proj-title {
+        color: var(--accent);
+      }
+
+      .proj-num {
+        font-size: 0.65em;
+        letter-spacing: 0.2em;
+        color: var(--text-dim);
+        margin-bottom: 12px;
+      }
+
+      .proj-title {
+        font-family: var(--font-display);
+        font-size: 1.8em;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 12px;
+        transition: color 0.3s;
+      }
+
+      .proj-desc {
+        font-size: 0.75em;
+        color: var(--text-muted);
+        line-height: 1.8;
+        max-width: 700px;
+      }
+
+      .proj-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .tag {
+        font-size: 0.6em;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        border: 1px solid var(--border);
+        padding: 4px 12px;
+      }
+
+      .project-arrow {
+        font-size: 1.5em;
+        color: var(--accent-bright);
+        opacity: 0.3;
+        transition: all 0.3s;
+        align-self: center;
+        text-decoration: none;
+      }
+
+      /* ─── Contact ─── */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+
+      .contact-intro {
+        font-family: var(--font-display);
+        font-size: clamp(24px, 3vw, 40px);
+        font-weight: 300;
+        line-height: 1.4;
+        color: var(--text);
+      }
+
+      .contact-intro em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .contact-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.75em;
+        letter-spacing: 0.05em;
+        transition: all 0.3s;
+        background: var(--bg-card);
+      }
+
+      .contact-link:hover {
+        border-color: var(--border-light);
+        color: var(--text);
+        background: var(--bg-card-2);
+        padding-left: 32px;
+      }
+
+      .contact-link .link-label {
+        font-size: 0.65em;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
+      .contact-link-arrow {
+        opacity: 0;
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+      .contact-link:hover .contact-link-arrow {
+        opacity: 1;
+        transform: translateX(4px);
+      }
+
+      /* ─── Footer ─── */
+      footer {
+        padding: 32px 60px;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
       }
 
-      nav ul li {
-        margin: 10px 0;
+      footer p {
+        font-size: 0.65em;
+        letter-spacing: 0.15em;
+        color: var(--text-dim);
       }
 
-      .hero {
-        padding: 80px 20px;
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 1.2em;
+        font-weight: 300;
+        color: var(--text-dim);
       }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href = "#about">About</a></li>
-        <li><a href = "#education">Education</a></li>
-        <li><a href = "#skills">Skills</a></li>
-        <li><a href = "#projects">Projects</a></li>
-        <li><a href = "#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class = "hero">
-    <h1>Welcome to My Portfolio</h1>
-    <p>Hi, I'm Rithvik Muthyalapati, a Computer Science enthusiast with an unlimited passion for technology, development, and engineering.</p>
-  </section>
+      /* ─── Scroll Reveal ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
 
-  <section id = "about" class = "section">
-    <div class = "container">
-      <h2>About Me</h2>
-      <div class = "card">
-        <p>My name is Rithvik Muthyalapati. I was born and raised in California, USA. I am a passionate computer science student with a strong foundation in programming and a keen interest in software engineering, object oriented programming, and machine learning. My knowledge is not limited to this field, and I am constantly exploring new technologies and methodologies. I shifted back to India to pursue my higher education in Computer Science at PES University in Bengaluru, Karnataka, India.</p>
-      </div>
-    </div>
-  </section>
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-  <section id = "education" class = "section">
-    <div class = "container">
-      <h2>Education</h2>
-      <div class = "card">
+      /* ─── Responsive ─── */
+      @media (max-width: 900px) {
+        header {
+          padding: 16px 24px;
+        }
+        .hero {
+          padding: 0 24px 60px;
+        }
+        .hero h1 {
+          font-size: clamp(36px, 8vw, 60px);
+        }
+        section:not(.hero) {
+          padding: 70px 24px;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .project-item {
+          grid-template-columns: 1fr;
+          padding: 28px;
+        }
+        nav ul {
+          gap: 16px;
+        }
+        .hero-index {
+          display: none;
+        }
+        .edu-item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- ─── Header ─── -->
+    <header>
+      <div class="logo">RM<span> / Portfolio</span></div>
+      <nav>
         <ul>
-          <li>B.Tech Computer Science and Engineering - PES University, Bangalore - 2022-present</li>
-          <li>High School - Homestead High School, California, USA - 2018-2022</li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
-    </div>
-  </section>
+      </nav>
+    </header>
 
-  <section id = "skills" class = "section">
-    <div class = "container">
-      <h2>Skills</h2>
-      <div class = "card">
-        <h3>Programming Languages</h3>
-        <p>Java (proficient), Python (proficient), C (proficient), C++ (intermediate), C# (beginner), Rust (beginner), PHP (beginner)</p>
+    <!-- ─── Hero ─── -->
+    <section class="hero">
+      <div class="hero-bg-text">RITHVIK</div>
+      <div class="hero-index">CS Engineer &nbsp;·&nbsp; 2025</div>
+      <p class="hero-label">// portfolio.v2025</p>
+      <h1>Rithvik<br /><em>Muthyalapati</em></h1>
+      <p class="hero-sub">
+        Computer Science engineer building at the intersection of software,
+        machine learning, and human-centered design. Based in Bengaluru, India.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
       </div>
-      <div class = "card">
-        <h3>Machine Learning, GenAI </h3>
-      </div>
-      <div class = "card">
-        <h3>Cloud/Web</h3>
-        <p>Kubernetes, Docker</p>
-      </div>
-      <div class = "card">
-        <h3>Full Stack Development</h3>
-        <p>Frontend (HTML/CSS/JS), Backend (Node.js, Express.js)</p>
-      </div>
-      <div class = "card">
-        <h3>Database Management</h3>
-        <p>SQL, MongoDB</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id = "projects" class = "section">
-    <div class = "container">
-      <h2>Projects</h2>
-      <div class = "card">
-        <h3><a class = "project-link" href = "https://github.com/Rithvik50/Osteoporosis-Detector-Using-Explainable-AI" target = "_blank">Osteoporosis Detector Using Explainable AI</a></h3>
-        <p>This is my capstone project. I created an AI model which can determine the stage of osteoporosis based on hip x-ray scans by classifying its Singh Index and explains the classification to the user. It can be used by people to determine stage of osteoporosis before visiting the doctor and by med students to learn how to classify stages of osteoporosis via Singh Index. It consists of User Interface implementation using Streamlit, so the project is deployable.</p>
+    <!-- ─── About ─── -->
+    <section id="about">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+        <div class="section-line"></div>
       </div>
-      <div class = "card">
-        <h3><a class = "project-link" href = "https://github.com/Rithvik50/Calculator" target = "_blank">Calculator</a></h3>
-        <p>Created a GUI calculator interface using Java. Handles complex operations and applies PEMDAS. Utilizes data structures like arrays and stacks.</p>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            Born and raised in California, USA, I'm a passionate computer
+            science student with a strong foundation in programming, currently
+            pursuing my B.Tech at PES University in Bengaluru, India.
+          </p>
+          <p>
+            I have a keen interest in software engineering, object-oriented
+            programming, and machine learning — but my curiosity extends well
+            beyond these domains. I'm constantly exploring new technologies and
+            methodologies that push the boundaries of what software can do.
+          </p>
+          <p>
+            I believe great engineering is part logic, part craft — and I
+            approach every project with that ethos in mind.
+          </p>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat-box">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years Coding</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Technologies</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Countries Lived</div>
+          </div>
+        </div>
       </div>
-      <div class = "card">
-        <h3><a class = "project-link" href = "https://github.com/Rithvik50/Legal_AEye-Opener" target = "_blank">Legal AEye-Opener</a></h3>
-        <p>A legal AI advisor which utilizes LLMs and RAG to answer grievances about legal matters according to BNS.</p>
-      </div>
-      <div class = "card">
-        <h3><a class = "project-link" href = "https://github.com/Rithvik50/Flap_UnityGame-WebAPI" target = "_blank">GameServerAPI</a></h3>
-        <p>Created a game on Unity using C# and implemented a web API to display a user’s achievements and score. Stores the user’s information on phpMyAdmin SQL server and uses PHP scripting to access the database and retrieve info from it.</p>
-      </div>
-      <div class = "card">
-        <h3><a class = "project-link" href = "https://github.com/Rithvik50/VehicleRentalSystem" target = "_blank">VehicleRentalSystem</a></h3>
-        <p>A vehicle rental system that utilizes JDBC to store rental information on an SQL server. Provides a GUI interface to interact with the rental system to rent vehicles or add as an admin.</p>
-      </div>
-      <div class = "card">
-        <p>For other projects, refer to my <a class = "project-link" href = "https://github.com/Rithvik50/" target = "_blank">GitHub repository</a>.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id = "contact" class = "section">
-    <div class = "container">
-      <h2>Contact</h2>
-      <div class = "card">
-        <p>Feel free to reach out to me via:</p>
-        <ul>
-          <li>Phone: <a href = "tel:8951717766">8951717766</a></li>
-          <li>Email: <a href = "mailto:rmuthyalapati@gmail.com">rmuthyalapati@gmail.com</a></li>
-          <li>LinkedIn: <a href = "https://www.linkedin.com/in/rithvikmuthyalapati/">LinkedIn Profile</a></li>
-          <li>GitHub: <a href = "https://github.com/Rithvik50/">GitHub Profile</a></li>
-        </ul>
+    <!-- ─── Education ─── -->
+    <section id="education">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Education</h2>
+        <div class="section-line"></div>
       </div>
-    </div>
-  </section>
+      <div class="reveal">
+        <div class="edu-item">
+          <div class="edu-year">2022 — Present</div>
+          <div>
+            <div class="edu-title">B.Tech Computer Science & Engineering</div>
+            <div class="edu-place">
+              PES University · Bengaluru, Karnataka, India
+            </div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2018 — 2022</div>
+          <div>
+            <div class="edu-title">High School Diploma</div>
+            <div class="edu-place">Homestead High School · California, USA</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Rithvik Muthyalapati - Portfolio</p>
-  </footer>
-</body>
+    <!-- ─── Skills ─── -->
+    <section id="skills">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-tag">// Languages</div>
+          <div class="skill-name">Programming</div>
+          <div class="skill-detail">
+            Java (proficient) · Python (proficient) · C (proficient) · C++
+            (intermediate) · C# (beginner) · Rust (beginner) · PHP (beginner)
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-tag">// AI / ML</div>
+          <div class="skill-name">Machine Learning & GenAI</div>
+          <div class="skill-detail">
+            Explainable AI · RAG · LLMs · Model Training & Evaluation ·
+            Streamlit Deployment
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-tag">// Infrastructure</div>
+          <div class="skill-name">Cloud & DevOps</div>
+          <div class="skill-detail">
+            Kubernetes · Docker · Containerization · Cloud Deployment
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-tag">// Web</div>
+          <div class="skill-name">Full Stack Dev</div>
+          <div class="skill-detail">
+            Frontend: HTML · CSS · JavaScript<br />Backend: Node.js · Express.js
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-tag">// Data</div>
+          <div class="skill-name">Databases</div>
+          <div class="skill-detail">SQL · MongoDB · phpMyAdmin · JDBC</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Projects ─── -->
+    <section id="projects">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-list">
+        <div class="project-item reveal">
+          <div>
+            <div class="proj-num">01</div>
+            <div class="proj-title">
+              Osteoporosis Detector Using Explainable AI
+            </div>
+            <div class="proj-desc">
+              Capstone project — an AI model that determines the stage of
+              osteoporosis from hip X-ray scans by classifying the Singh Index
+              and explains its classification to the user. Useful for patients
+              and medical students alike, with a deployable Streamlit UI.
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Explainable AI</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Medical Imaging</span>
+            </div>
+          </div>
+          <a
+            class="project-arrow"
+            href="https://github.com/Rithvik50/Osteoporosis-Detector-Using-Explainable-AI"
+            target="_blank"
+            title="View on GitHub"
+            >↗</a
+          >
+        </div>
+
+        <div class="project-item reveal">
+          <div>
+            <div class="proj-num">02</div>
+            <div class="proj-title">Legal AEye-Opener</div>
+            <div class="proj-desc">
+              A legal AI advisor that uses LLMs and Retrieval-Augmented
+              Generation (RAG) to answer grievances about legal matters
+              according to the Bharatiya Nyaya Sanhita (BNS).
+            </div>
+            <div class="proj-tags">
+              <span class="tag">LLMs</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Python</span>
+              <span class="tag">Legal Tech</span>
+            </div>
+          </div>
+          <a
+            class="project-arrow"
+            href="https://github.com/Rithvik50/Legal_AEye-Opener"
+            target="_blank"
+            title="View on GitHub"
+            >↗</a
+          >
+        </div>
+
+        <div class="project-item reveal">
+          <div>
+            <div class="proj-num">03</div>
+            <div class="proj-title">GameServerAPI</div>
+            <div class="proj-desc">
+              A Unity game built with C# paired with a web API to display user
+              achievements and scores. Stores user data on a phpMyAdmin SQL
+              server with PHP scripting to retrieve and serve information.
+            </div>
+            <div class="proj-tags">
+              <span class="tag">C#</span>
+              <span class="tag">Unity</span>
+              <span class="tag">PHP</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Web API</span>
+            </div>
+          </div>
+          <a
+            class="project-arrow"
+            href="https://github.com/Rithvik50/Flap_UnityGame-WebAPI"
+            target="_blank"
+            title="View on GitHub"
+            >↗</a
+          >
+        </div>
+
+        <div class="project-item reveal">
+          <div>
+            <div class="proj-num">04</div>
+            <div class="proj-title">Vehicle Rental System</div>
+            <div class="proj-desc">
+              A GUI-driven vehicle rental platform using JDBC to persist rental
+              data on an SQL server. Supports both customer and admin workflows
+              for renting and managing vehicles.
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Java</span>
+              <span class="tag">JDBC</span>
+              <span class="tag">SQL</span>
+              <span class="tag">GUI</span>
+            </div>
+          </div>
+          <a
+            class="project-arrow"
+            href="https://github.com/Rithvik50/VehicleRentalSystem"
+            target="_blank"
+            title="View on GitHub"
+            >↗</a
+          >
+        </div>
+
+        <div class="project-item reveal">
+          <div>
+            <div class="proj-num">05</div>
+            <div class="proj-title">GUI Calculator</div>
+            <div class="proj-desc">
+              A Java-based GUI calculator capable of handling complex operations
+              with proper PEMDAS precedence, utilising arrays and stacks as core
+              data structures.
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">GUI</span>
+            </div>
+          </div>
+          <a
+            class="project-arrow"
+            href="https://github.com/Rithvik50/Calculator"
+            target="_blank"
+            title="View on GitHub"
+            >↗</a
+          >
+        </div>
+      </div>
+      <div class="reveal" style="margin-top: 24px; text-align: center">
+        <a
+          href="https://github.com/Rithvik50/"
+          target="_blank"
+          class="btn btn-ghost"
+          style="display: inline-block"
+          >View All on GitHub ↗</a
+        >
+      </div>
+    </section>
+
+    <!-- ─── Contact ─── -->
+    <section id="contact">
+      <div class="section-header reveal">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-intro reveal">
+          Have a project in mind, or just want to <em>connect</em>? I'm always
+          open to interesting conversations.
+        </div>
+        <div class="contact-links reveal">
+          <a href="mailto:rmuthyalapati@gmail.com" class="contact-link">
+            <div>
+              <div class="link-label">Email</div>
+              <div>rmuthyalapati@gmail.com</div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="tel:8951717766" class="contact-link">
+            <div>
+              <div class="link-label">Phone</div>
+              <div>+91 8951717766</div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rithvikmuthyalapati/"
+            target="_blank"
+            class="contact-link"
+          >
+            <div>
+              <div class="link-label">LinkedIn</div>
+              <div>rithvikmuthyalapati</div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a
+            href="https://github.com/Rithvik50/"
+            target="_blank"
+            class="contact-link"
+          >
+            <div>
+              <div class="link-label">GitHub</div>
+              <div>Rithvik50</div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer ─── -->
+    <footer>
+      <div class="footer-logo">Rithvik Muthyalapati</div>
+      <p>© 2025 · Built with craft, not a template.</p>
+    </footer>
+
+    <script>
+      // ─── Custom Cursor
+      const cursor = document.getElementById("cursor");
+      const ring = document.getElementById("cursor-ring");
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+        ring.style.left = e.clientX + "px";
+        ring.style.top = e.clientY + "px";
+      });
+
+      // ─── Scroll Reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              // stagger children
+              const children = e.target.querySelectorAll(".reveal");
+              children.forEach((child, i) => {
+                setTimeout(() => child.classList.add("visible"), i * 100);
+              });
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
 </html>
